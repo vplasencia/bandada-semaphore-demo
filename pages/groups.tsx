@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react"
 import { getMembersGroup, getGroup } from "@/utils/bandadaApi"
 import Stepper from "@/components/stepper"
 import Divider from "@/components/divider"
-import { getRoot } from "@/utils/useSemaphore"
 import { useSearchParams, useRouter } from "next/navigation"
 
 export default function GroupsPage() {
@@ -59,7 +58,7 @@ export default function GroupsPage() {
       alert("Some error ocurred! Group not found!")
       return
     }
-    const groupRoot = await getRoot(groupId, group.treeDepth, group.members)
+    const groupRoot = group.fingerprint;
 
     try {
       const response = await fetch("api/join-credential", {
